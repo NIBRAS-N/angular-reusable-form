@@ -1,0 +1,28 @@
+<p>reusable-form works!</p>
+
+
+
+<form class="max-w-sm mx-auto " #userForm="ngForm">
+    <div class="mb-5">
+        
+        <app-wrapper-component [label]="'email'" [toolkit]="'only accepts valid email'" [validation]="(GiveEmail.touched && GiveEmail.errors) ? GiveEmail.errors : {}">
+            {{GiveEmail.errors|json}}{{GiveEmail.touched|json}}
+            <input type="email" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" class="form-control" name="giveEmail" #GiveEmail="ngModel" [(ngModel)]="userObj.yourEmail" placeholder="give your email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  required />
+        </app-wrapper-component>
+      
+      
+    </div>
+
+    <div class="p-2">
+        
+        <app-wrapper-component [label]="'password'" [toolkit]="'provide 6 length pass'" [validation]="(givePass.touched && givePass.errors) ? givePass.errors : {}">
+            <input type="password" #givePass="ngModel" name="givePass" [(ngModel)]="userObj.yourPassword" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required minlength="6">
+        </app-wrapper-component>
+      
+       
+    </div>
+   
+    <button type="button" [disabled]="userForm.form.valid" (click)="onSubmit(userForm)" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ">Submit</button>
+    {{userForm.form.valid}}
+  </form>
+  
